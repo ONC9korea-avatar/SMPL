@@ -197,7 +197,8 @@ class SMPLModel(Module):
     # estimate 3D joint locations
     # print(result.shape)
     # print(self.joint_regressor.shape)
-    joints = torch.tensordot(result, self.joint_regressor, dims=([1], [0])).transpose(1, 2)
+    joints = torch.einsum('bik,ji->bjk', [result, self.joint_regressor])
+    # joints = torch.tensordot(result, self.joint_regressor, dims=([1], [0])).transpose(1, 2)
     return result, joints
 
 
