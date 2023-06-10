@@ -31,7 +31,7 @@ class SMPLModel(Module):
     self.device = device if device is not None else torch.device('cpu')
     for name in ['J_regressor', 'joint_regressor', 'weights', 'posedirs', 'v_template', 'shapedirs']:
       _tensor = getattr(self, name)
-      print(' Tensor {} shape: '.format(name), _tensor.shape)
+      # print(' Tensor {} shape: '.format(name), _tensor.shape)
       setattr(self, name, _tensor.to(device))
 
   @staticmethod
